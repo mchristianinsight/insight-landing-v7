@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Insight Behavioral Centers</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1b2c70;--cyan:#038b9b;--light:#edeff8;--white:#ffffff;
+  --text-dark:#1a1f3a;--text-mid:#4a5270;--text-light:#7a82a0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:8px 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.97);box-shadow:0 1px 24px rgba(27,44,112,.09);backdrop-filter:blur(12px);transition:background .4s,box-shadow .4s,padding .3s}
+
+.nav-logo{height:48px;width:auto;filter:none;transition:height .3s;object-fit:contain;flex-shrink:0}
+
+.nav-links{display:flex;align-items:center;gap:6px;opacity:1;pointer-events:auto;transition:opacity .35s}
+
+.nav-practice-link{position:relative;font-family:'Raleway',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-decoration:none;padding:8px 16px;border-radius:100px;border:1px solid rgba(27,44,112,.20);color:var(--navy);transition:color .25s,border-color .25s;white-space:nowrap}
+.nav-practice-link:hover{color:var(--cyan);border-color:var(--cyan)}
+.nav-divider{width:1px;height:18px;background:rgba(27,44,112,.14);margin:0 4px;flex-shrink:0}
+
+
+/* HERO - DESKTOP */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-photo{
+  position:absolute;inset:0;
+  background-image:url('images/hero-desktop.jpg');
+  background-size:cover;
+  background-position:65% 30%;
+  z-index:0
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(108deg,rgba(18,28,72,.93) 0%,rgba(18,28,72,.82) 38%,rgba(18,28,72,.45) 65%,rgba(18,28,72,.18) 100%)
+}
+.hero-vignette-top{position:absolute;top:0;left:0;right:0;height:220px;background:linear-gradient(to bottom,rgba(18,28,72,.55) 0%,transparent 100%);z-index:2}
+.hero-content{position:relative;z-index:3;width:100%;padding:150px 5% 110px;max-width:800px;padding-top:112px}
+
+/* HERO - MOBILE: swap to pre-cropped portrait image, text at bottom */
+@media(max-width:768px){
+  .hero{min-height:100svh;align-items:flex-end
+  .team-grid{grid-template-columns:1fr;gap:18px
+  .hero-photo{background-image:url('images/hero-mobile.jpg?v=19');background-size:cover;background-position:center 15%;}
+}
+}
+  .hero-photo{
+    /* Use the mobile-specific pre-cropped image showing her face */
+    background-image:url('images/craig-james-headshot.jpg');
+    background-size:cover;
+    background-position:center 15%;  /* face is at top of this crop — show it */
+  }
+  .hero-overlay{
+    background:linear-gradient(
+      to bottom,
+      rgba(18,28,72,.05) 0%,
+      rgba(18,28,72,.10) 30%,
+      rgba(18,28,72,.60) 55%,
+      rgba(18,28,72,.92) 72%,
+      rgba(18,28,72,.97) 100%
+    )
+  }
+  .hero-vignette-top{height:100px;background:linear-gradient(to bottom,rgba(18,28,72,.4) 0%,transparent 100%)}
+  .hero-content{
+    padding:0 6% 44px;
+    max-width:100%;
+    /* spacer pushes content down so image shows in top ~55% */
+    padding-top:56vh
+  }
+  .hero-brand-name{font-size:clamp(2.8rem,12vw,4.2rem) !important;line-height:1.06 !important}
+  .hero-divider{margin:16px 0 14px !important}
+  .hero-sub{font-size:.93rem !important;max-width:100% !important;color:rgba(255,255,255,.88) !important}
+  .hero-actions{margin-top:22px !important;flex-direction:column !important;gap:10px !important}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center;padding:15px 20px !important}
+}
+
+/* HERO TEXT & BUTTONS */
+.hero-brand-name{
+  font-family:'Raleway',sans-serif;font-weight:700;
+  font-size:clamp(3.0rem,6.8vw,6.2rem);line-height:1.08;letter-spacing:-.01em;
+  color:white;opacity:0;transform:translateY(32px);
+  animation:fadeUp 1.0s .3s cubic-bezier(.25,.46,.45,.94) forwards
+}
+.hero-brand-name .word-insight{display:block;letter-spacing:.04em}
+.hero-brand-name .word-behavioral{display:block;color:rgba(255,255,255,.88);font-weight:300;letter-spacing:.02em}
+.hero-brand-name .word-centers{display:block;color:white;font-weight:300;letter-spacing:.02em}
+.hero-divider{width:48px;height:2px;background:var(--cyan);margin:28px 0 26px;opacity:0;transform:scaleX(0);transform-origin:left;animation:expandLine .7s .95s forwards}
+@keyframes expandLine{to{opacity:1;transform:scaleX(1)}}
+.hero-sub{font-size:clamp(.92rem,1.5vw,1.08rem);font-weight:300;color:rgba(255,255,255,.78);max-width:460px;line-height:1.74;opacity:0;transform:translateY(20px);animation:fadeUp .9s 1.05s forwards}
+.hero-actions{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:fadeUp .9s 1.2s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--cyan);color:white;padding:15px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.93rem;font-weight:500;text-decoration:none;letter-spacing:.025em;transition:all .3s;position:relative;overflow:hidden}
+.btn-primary:hover{background:#027585;transform:translateY(-3px);box-shadow:0 8px 30px rgba(3,139,155,.45)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;background:transparent;color:white;padding:15px 36px;border-radius:100px;border:1.5px solid rgba(255,255,255,.38);font-family:'DM Sans',sans-serif;font-size:.93rem;font-weight:400;text-decoration:none;transition:all .3s ease}
+.btn-ghost:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.70);transform:translateY(-2px)}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+section{padding:clamp(64px,8vw,104px) 5%}
+.section-eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.section-title{font-family:'Raleway',sans-serif;font-size:clamp(1.9rem,3.6vw,3.0rem);font-weight:600;line-height:1.18;color:var(--navy)}
+
+/* WHICH PATH */
+.which-path{background:var(--light);text-align:center}
+.which-path-header{max-width:640px;margin:0 auto 68px}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1040px;margin:0 auto;align-items:start}
+.service-card{background:var(--white);border:1px solid rgba(27,44,112,.10);border-radius:24px;padding:44px 40px 42px;text-align:left;text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .4s,box-shadow .4s,border-color .3s;box-shadow:0 4px 24px rgba(27,44,112,.10),0 1px 6px rgba(27,44,112,.06)}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 16px 56px rgba(27,44,112,.16),0 4px 16px rgba(27,44,112,.08)}
+.service-card:hover::before{transform:scaleX(1)}
+.card-badge{display:inline-block;padding:5px 14px;border-radius:100px;font-size:.70rem;font-weight:600;letter-spacing:.10em;text-transform:uppercase;margin-bottom:26px;align-self:flex-start}
+.badge-therapy{background:rgba(27,44,112,.08);color:var(--navy)}
+.badge-recovery{background:rgba(3,139,155,.10);color:var(--cyan)}
+.card-logo-zone{height:92px;display:flex;align-items:center;margin-bottom:26px}
+.card-logo-therapy{height:92px;width:auto;max-width:320px;object-fit:contain;object-position:left center}
+.card-logo-recovery{height:76px;width:auto;max-width:300px;object-fit:contain;object-position:left center}
+.card-title-zone{min-height:66px;margin-bottom:12px;display:flex;align-items:flex-start}
+.card-title{font-family:'Raleway',sans-serif;font-size:1.42rem;font-weight:600;color:var(--navy);line-height:1.26;margin:0}
+.card-desc{font-size:.90rem;line-height:1.74;color:var(--text-mid);margin-bottom:24px}
+.card-services{display:flex;flex-direction:column;gap:11px;margin-bottom:36px}
+.card-service-item{display:flex;align-items:flex-start;gap:12px;font-size:.875rem;color:var(--text-dark);line-height:1.45}
+.service-check{width:20px;height:20px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.service-check svg{width:10px;height:10px;stroke:var(--navy);stroke-width:2.5;fill:none}
+.card-link{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:500;color:var(--navy);text-decoration:none;transition:gap .2s,color .2s;margin-top:auto}
+.card-link:hover{gap:14px;color:var(--cyan)}
+.card-link svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+
+/* GUIDE */
+.guide-section{background:white}
+.guide-inner{max-width:960px;margin:0 auto;text-align:center}
+.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:52px;border-radius:20px;overflow:hidden;box-shadow:0 2px 40px rgba(27,44,112,.10)}
+.guide-item{background:var(--light);padding:40px 36px;text-align:left}
+.guide-item-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:10px}
+.guide-item-question{font-family:'Raleway',sans-serif;font-size:1.10rem;font-style:italic;font-weight:400;color:var(--navy);margin-bottom:12px;line-height:1.35}
+.guide-item-answer{font-size:.89rem;line-height:1.74;color:var(--text-mid)}
+.guide-item-answer strong{color:var(--navy);font-weight:600}
+
+/* CONTACT */
+.contact-section{background:var(--light)}
+.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-left{position:sticky;top:100px}
+.contact-brands{display:flex;flex-direction:column;gap:18px;margin-top:48px}
+.contact-brand-item{display:flex;align-items:center;gap:18px;padding:20px 24px;background:white;border-radius:16px;text-decoration:none;transition:transform .25s,box-shadow .25s;min-height:84px;box-shadow:0 2px 16px rgba(27,44,112,.08)}
+.contact-brand-item:hover{transform:translateX(6px);box-shadow:0 6px 32px rgba(27,44,112,.14)}
+.contact-logo-therapy{height:50px;width:auto;max-width:170px;flex-shrink:0;object-fit:contain}
+.contact-logo-recovery{height:42px;width:auto;max-width:160px;flex-shrink:0;object-fit:contain}
+.contact-brand-text{flex:1}
+.contact-brand-name-text{font-size:.88rem;font-weight:500;color:var(--navy);margin-bottom:3px;line-height:1.3}
+.contact-brand-url{font-size:.76rem;color:var(--cyan)}
+.contact-brand-arrow{width:20px;height:20px;stroke:var(--text-light);stroke-width:1.5;fill:none;flex-shrink:0;transition:stroke .2s,transform .2s}
+.contact-brand-item:hover .contact-brand-arrow{stroke:var(--cyan);transform:translateX(3px)}
+
+/* FORM */
+.contact-form-wrap{background:white;border-radius:28px;padding:48px 44px;box-shadow:0 4px 32px rgba(27,44,112,.09)}
+.form-title{font-family:'Raleway',sans-serif;font-size:1.85rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+.form-subtitle{font-size:.9rem;color:var(--text-mid);margin-bottom:36px;line-height:1.6}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.77rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mid);margin-bottom:8px}
+.form-group input,.form-group textarea{width:100%;padding:14px 18px;background:var(--light);border:1.5px solid transparent;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text-dark);outline:none;transition:border-color .25s,box-shadow .25s,background .25s}
+.form-group input:focus,.form-group textarea:focus{background:white;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(3,139,155,.10)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.submit-btn{width:100%;padding:16px;background:var(--navy);color:white;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;margin-top:8px;transition:background .3s,transform .25s,box-shadow .3s;letter-spacing:.025em}
+.submit-btn:hover{background:#152460;transform:translateY(-2px);box-shadow:0 6px 24px rgba(27,44,112,.28)}
+.submit-btn:disabled{opacity:.65;cursor:not-allowed;transform:none !important;box-shadow:none !important}
+.form-success{display:none;text-align:center;padding:40px 20px}
+.form-success.visible{display:block;animation:fadeUp .5s forwards}
+.success-icon{width:56px;height:56px;background:rgba(3,139,155,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.success-icon svg{width:28px;height:28px;stroke:var(--cyan);stroke-width:2;fill:none}
+.form-error-msg{margin-top:14px;padding:12px 16px;background:rgba(224,82,82,.09);border-radius:10px;color:#c0392b;font-size:.84rem;display:none}
+.form-error-msg.visible{display:block}
+
+/* TEAM */
+.team-section{background:var(--light);padding:clamp(56px,7vw,88px) 5%}
+.team-inner{max-width:1040px;margin:0 auto}
+.team-header{text-align:center;margin-bottom:52px}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto}
+.team-card{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;cursor:pointer;box-shadow:0 4px 32px rgba(27,44,112,.15);-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;perspective:1200px}
+.team-card-photo{position:absolute;inset:0;background-size:cover;background-position:center top;transition:transform .5s}
+.team-card:hover .team-card-photo,.team-card.active .team-card-photo{transform:scale(1.04)}
+.team-card-footer{position:absolute;bottom:0;left:0;right:0;padding:70px 22px 22px;background:linear-gradient(to top,rgba(18,28,72,.90) 0%,rgba(18,28,72,.55) 55%,transparent 100%);transition:opacity .35s}
+.team-contact-label{font-family:'Raleway',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px}
+.team-name{font-family:'Raleway',sans-serif;font-size:1.05rem;font-weight:600;color:white;line-height:1.25;margin-bottom:3px}
+.team-role{font-size:.76rem;color:rgba(255,255,255,.68);line-height:1.35}
+.overlay-name{font-family:'Raleway',sans-serif;font-size:1.28rem;font-weight:650;color:white;margin-bottom:6px;line-height:1.2}
+.overlay-creds{font-size:.88rem;color:rgba(255,255,255,.60);margin-bottom:6px;letter-spacing:.03em}
+.overlay-role{font-size:.92rem;color:var(--cyan);margin-bottom:22px;font-weight:600;line-height:1.35}
+.overlay-divider{width:32px;height:1px;background:rgba(255,255,255,.18);margin-bottom:18px}
+.overlay-contact-item{display:flex;align-items:center;gap:10px;text-decoration:none;color:rgba(255,255,255,.88);font-size:.92rem;padding:11px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);margin-bottom:10px;width:100%;justify-content:center;transition:background .2s,border-color .2s,color .2s}
+.overlay-contact-item:hover{background:rgba(3,139,155,.22);border-color:var(--cyan);color:white}
+.overlay-contact-item svg{width:16px;height:16px;stroke:var(--cyan);stroke-width:1.9;fill:none;flex-shrink:0}
+.overlay-close-hint{margin-top:16px;font-size:.72rem;color:rgba(255,255,255,.34);letter-spacing:.10em;text-transform:uppercase}
+
+/* FOOTER */
+footer{background:var(--navy);padding:56px 5% 36px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:44px;flex-wrap:wrap}
+.footer-logo-block{max-width:340px}
+.footer-logo-block img{height:90px;width:auto;margin-bottom:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:.88;display:block}
+.footer-tagline{font-size:.88rem;line-height:1.65;color:rgba(255,255,255,.50);max-width:310px}
+.footer-links{display:flex;gap:60px;flex-wrap:wrap}
+.footer-col-title{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.36);margin-bottom:18px;font-weight:600}
+.footer-col a{display:flex;align-items:center;gap:10px;font-size:.88rem;color:rgba(255,255,255,.62);text-decoration:none;margin-bottom:12px;transition:color .2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-social-icon{width:28px;height:28px;border-radius:6px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+.footer-col a:hover .footer-social-icon{background:rgba(3,139,155,.22)}
+.footer-social-icon svg{width:14px;height:14px;fill:rgba(255,255,255,.58);transition:fill .2s}
+.footer-col a:hover .footer-social-icon svg{fill:var(--cyan)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.10);padding-top:26px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-copy{font-size:.80rem;color:rgba(255,255,255,.30)}
+
+/* REVEAL ANIMATION
+   Key fix: use opacity:1 as default for no-JS / slow-loading.
+   JS will set opacity:0 only after observer is ready.
+   This prevents sections staying invisible if observer misfires on mobile. */
+.reveal{transition:opacity .75s ease,transform .75s cubic-bezier(.25,.46,.45,.94)}
+.reveal.will-animate{opacity:0;transform:translateY(28px)}
+.reveal.visible{opacity:1 !important;transform:translateY(0) !important}
+.reveal-delay-1{transition-delay:.10s}.reveal-delay-2{transition-delay:.22s}
+.reveal-delay-3{transition-delay:.34s}.reveal-delay-4{transition-delay:.46s}
+
+/* TABLET/MOBILE */
+@media(max-width:900px){
+  .cards-grid{grid-template-columns:1fr;gap:20px}
+  .guide-grid{grid-template-columns:1fr}
+  .contact-inner{grid-template-columns:1fr;gap:48px}
+  .contact-left{position:static}
+}
+@media(max-width:768px){
+  .nav-logo{height:60px}
+  .card-title-zone{min-height:unset;margin-bottom:10px}
+  .card-logo-zone{height:72px}.card-logo-therapy{height:72px}.card-logo-recovery{height:60px}
+  .service-card{padding:32px 24px 30px}
+  .team-grid{gap:14px}
+  .contact-form-wrap{padding:32px 24px}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{flex-direction:column;gap:36px}
+  .footer-links{gap:36px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:14px}
+  .footer-logo-block img{height:72px}
+}
+@media(max-width:480px){
+  .overlay-contact-item{display:flex;align-items:center;gap:10px;text-decoration:none;color:rgba(255,255,255,.88);font-size:.92rem;padding:11px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);margin-bottom:10px;width:100%;justify-content:center;transition:background .2s,border-color .2s,color .2s}
+  .overlay-name{font-family:'Raleway',sans-serif;font-size:1.28rem;font-weight:650;color:white;margin-bottom:6px;line-height:1.2}
+  .team-grid{gap:12px}
+}
+
+.team-card-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.team-card-back{transform:rotateY(180deg);background:rgba(18,28,72,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 22px;text-align:center}
+
+.team-card-front{transform:rotateY(0deg)}
+
+.team-card-front{transform:rotateY(0deg) translateZ(1px)}
+.team-card-back{transform:rotateY(180deg) translateZ(2px)}
+
+
+/* ── TEAM FLIP (robust) ── */
+.team-card{perspective:1200px}
+.team-card-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.team-card.active .team-card-inner{transform:rotateY(180deg)}
+.team-card-front,.team-card-back{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  transform-style:preserve-3d;
+}
+.team-card-front{transform:rotateY(0deg);position:relative}
+.team-card-back{transform:rotateY(180deg);background:rgba(18,28,72,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 22px;text-align:center}
+
+/* Ensure front face fills card and shows headshot */
+.team-card-front{position:absolute;inset:0}
+.team-card-front .team-card-photo{position:absolute;inset:0}
+.team-card-front .team-card-footer{position:absolute;left:0;right:0;bottom:0}
+
+.overlay-contact-item{overflow-wrap:anywhere;word-break:break-word}
+
+
+/* Mobile nav: show site links in compact form */
+.nav-short{display:none}
+@media(max-width:780px){
+  .nav-links{display:flex !important; gap:8px; align-items:center}
+  .nav-divider{display:none}
+  .nav-practice-link{padding:7px 12px; font-size:.72rem}
+  .nav-long{display:none}
+  .nav-short{display:inline}
+}
+
+
+.team-header strong{font-weight:700}
+
+/* Mobile nav logos */
+.nav-logos{display:none}
+@media(max-width:780px){
+  .nav-links{display:none}
+  .nav-logos{display:flex;align-items:center;gap:10px}
+  .nav-logo-btn{
+    display:flex;align-items:center;justify-content:center;
+    width:56px;height:38px;
+    border-radius:999px;
+    border:1px solid rgba(27,44,112,.18);
+    background:rgba(255,255,255,.92);
+    box-shadow:0 6px 18px rgba(27,44,112,.08);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .nav-logo-btn:active{transform:translateY(1px)}
+  .nav-logo-btn img{height:18px;width:auto;display:block}
+}
+
+@media(max-width:768px){
+  .team-grid{grid-template-columns:1fr;gap:18px}
+  .card-visit-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 14px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(3,139,155,.16);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:650;
+    letter-spacing:.01em;
+    margin-top:10px;
+  }
+  .card-visit-pill:hover{background:rgba(3,139,155,.22)}
+}
+
+/* v15: Mobile nav cleanup (logos only) */
+@media(max-width:780px){
+  .nav-links{display:none !important}
+  .nav-logos{display:flex !important; align-items:center; gap:12px}
+  .nav-logo-btn{width:74px; height:42px}
+  .nav-logo-btn img{height:22px}
+}
+
+
+/* v17: Mobile-only overrides (no impact on desktop) */
+@media (max-width: 780px){
+  /* ensure only logo buttons show on mobile */
+  .nav-links{display:none !important;}
+  .nav-logos{display:flex !important; align-items:center; gap:12px;}
+  .nav-logo-btn{width:112px; height:56px;}
+  .nav-logo-btn img{height:30px;}
+}
+
+@media (max-width: 768px){
+  /* Force mobile hero image swap */
+  .hero-photo{
+    background-image: url('images/hero-mobile.jpg?v=19') !important;
+    background-size: cover !important;
+    background-position: center 15% !important;
+  }
+  /* Keep buttons full width only on mobile */
+  .btn-primary,.btn-ghost{width:100% !important; justify-content:center;}
+  .hero-buttons{flex-direction:column !important; gap:10px !important;}
+  /* Executive team: single column */
+  .team-grid{grid-template-columns:1fr !important; gap:18px !important;}
+}
+
+/* v18: Make mobile nav logos fill pill better */
+@media (max-width: 780px){
+  .nav-logo-btn{padding:0 !important;}
+  .nav-logo-btn img{
+    height:40px !important;
+    max-width:96px !important;
+    width:auto !important;
+    object-fit:contain !important;
+    display:block !important;
+  }
+}
+
+/* v19 final sizing tweaks */
+.nav-logo{height:48px}
+@media (max-width: 780px){
+  .nav-logo-btn{width:104px; height:52px}
+  .nav-logo-btn img{height:32px !important; max-width:86px !important}
+}
+</style>
+</head>
+<body>
+<nav id="mainNav">
+<img alt="Insight Behavioral Centers" class="nav-logo" src="images/insight-only-logo.png"/>
+<div class="nav-links">
+<a aria-label="Insight Into Action Therapy (opens in new tab)" class="nav-practice-link" href="https://www.insightactiontherapy.com/" rel="noopener noreferrer" target="_blank"><span class="nav-long">Insight Into Action Therapy</span><span class="nav-short">IIAT</span></a>
+<div class="nav-divider"></div>
+<a aria-label="Insight Recovery Centers (opens in new tab)" class="nav-practice-link" href="https://www.insightrecoverycenters.com/" rel="noopener noreferrer" target="_blank"><span class="nav-long">Insight Recovery Centers</span><span class="nav-short">IRC</span></a>
+</div><div class="nav-logos"><a aria-label="Insight Into Action Therapy" class="nav-logo-btn" href="https://www.insightactiontherapy.com/" rel="noopener noreferrer" target="_blank"><img alt="" src="images/IIAT-logo.png"/></a><a aria-label="Insight Recovery Centers" class="nav-logo-btn" href="https://www.insightrecoverycenters.com/" rel="noopener noreferrer" target="_blank"><img alt="" src="images/IRC-logo.png"/></a></div>
+</nav>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-photo"></div>
+<div class="hero-overlay"></div>
+<div class="hero-vignette-top"></div>
+<div class="hero-content">
+<h1 class="hero-brand-name">
+<span class="word-insight">Insight</span>
+<span class="word-behavioral">Behavioral</span>
+<span class="word-centers">Centers</span>
+</h1>
+<div class="hero-divider"></div>
+<p class="hero-sub">Expert mental health and substance use care, integrated under one trusted brand.</p>
+<div class="hero-actions">
+<a class="btn-primary" href="#our-practices">Find the Right Care <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 16 16" width="16"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
+<a class="btn-ghost" href="#contact">Contact Us</a>
+</div>
+</div>
+</section>
+<!-- WHICH PATH -->
+<section class="which-path" id="our-practices">
+<div class="which-path-header reveal">
+<p class="section-eyebrow">Two Practices. One Mission.</p>
+<h2 class="section-title">Which path is right for you?</h2>
+<p style="margin-top:16px;color:var(--text-mid);font-size:.96rem;line-height:1.72;max-width:500px;margin-left:auto;margin-right:auto;">Our two specialized practices serve different needs and levels of care. Find the one that fits where you are right now.</p>
+</div>
+<div class="cards-grid">
+<a class="service-card reveal reveal-delay-1" href="https://www.insightactiontherapy.com/" rel="noopener noreferrer" target="_blank">
+<span class="card-badge badge-therapy">Therapy &amp; Medication</span>
+<div class="card-logo-zone"><img alt="Insight Into Action Therapy" class="card-logo-therapy" src="images/IIAT-logo.png"/></div>
+<div class="card-title-zone"><h3 class="card-title">Therapy &amp; Psychiatry</h3></div>
+<p class="card-desc">An award-winning outpatient therapy practice offering evidence-based mental health therapy, medication management, and psychological testing — for children, teens, and adults.</p>
+<div class="card-services">
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Individual mental health therapy</div>
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Medication for mental health &amp; substance use disorders</div>
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Couples &amp; family therapy</div>
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Outpatient substance use therapy</div>
+</div>
+<span class="card-link">Visit Insight Into Action Therapy <svg viewbox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
+</a>
+<a class="service-card reveal reveal-delay-2" href="https://www.insightrecoverycenters.com/" rel="noopener noreferrer" target="_blank">
+<span class="card-badge badge-recovery">Recovery Center</span>
+<div class="card-logo-zone"><img alt="Insight Recovery Centers" class="card-logo-recovery" src="images/IRC-logo.png"/></div>
+<div class="card-title-zone"><h3 class="card-title">Substance Use Recovery &amp; Harm Reduction</h3></div>
+<p class="card-desc">Specialized recovery center treating adults with substance use disorders. From structured, intensive outpatient programs (IOP), to alcohol moderation and harm reduction psychotherapy.</p>
+<div class="card-services">
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Intensive Outpatient Program (IOP)</div>
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Morning, evening, and virtual IOP groups</div>
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Alcohol moderation program</div>
+<div class="card-service-item"><div class="service-check"><svg viewbox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"></polyline></svg></div>Harm-Reduction Psychotherapy®</div>
+</div>
+<span class="card-link">Visit Insight Recovery Centers <svg viewbox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
+</a>
+</div>
+</section>
+<!-- GUIDE -->
+<section class="guide-section">
+<div class="guide-inner">
+<div class="reveal">
+<p class="section-eyebrow">Not sure where to start?</p>
+<h2 class="section-title" style="font-size:clamp(2.2rem,4.2vw,3.4rem);">We'll help you find<br/>the right fit.</h2>
+<p style="margin-top:18px;color:var(--text-mid);font-size:1.0rem;line-height:1.75;max-width:520px;margin-left:auto;margin-right:auto;">Here's a quick guide to help you understand which of our practices is the best match for your needs.</p>
+</div>
+<div class="guide-grid">
+<div class="guide-item reveal reveal-delay-1">
+<p class="guide-item-label">Choose Insight Into Action Therapy if…</p>
+<p class="guide-item-question">"I need therapy, medication, or mental health support."</p>
+<p class="guide-item-answer">You or a loved one is dealing with <strong>anxiety, depression, trauma, autism, behavioral challenges, or relationship issues</strong>. This is also the right place for medication management and outpatient substance use counseling.</p>
+</div>
+<div class="guide-item reveal reveal-delay-2">
+<p class="guide-item-label">Choose Insight Recovery Centers if…</p>
+<p class="guide-item-question">"I need a structured recovery program for substance use."</p>
+<p class="guide-item-answer">You need a <strong>higher level of care</strong> for substance use — including an Intensive Outpatient Program (IOP), structured group treatment, or our alcohol moderation program.</p>
+</div>
+<div class="guide-item reveal reveal-delay-3" style="border-top:2px solid white">
+<p class="guide-item-label">Not sure?</p>
+<p class="guide-item-question">"I don't know where to begin."</p>
+<p class="guide-item-answer">That's completely okay. <strong>Use the contact form below</strong> and one of our team members will help guide you to the right place — no pressure, no obligation.</p>
+</div>
+<div class="guide-item reveal reveal-delay-4" style="border-top:2px solid white">
+<p class="guide-item-label">Different levels of care</p>
+<p class="guide-item-question">"What's the difference between the two?"</p>
+<p class="guide-item-answer">Insight Into Action Therapy offers individual outpatient care for clients of all ages, while Insight Recovery Centers provides structured, intensive programs specifically designed for adults’ substance use recovery and harm reduction.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+<div class="contact-inner">
+<div class="contact-left reveal">
+<p class="section-eyebrow">Get in Touch</p>
+<h2 class="section-title">Ready to take<br/>the next step?</h2>
+<p style="margin-top:16px;color:var(--text-mid);font-size:.95rem;line-height:1.72;max-width:380px;">Reach out and we'll connect you with the right team. You can also visit either practice directly.</p>
+<div class="contact-brands">
+<a class="contact-brand-item" href="https://www.insightactiontherapy.com/" rel="noopener noreferrer" target="_blank">
+<img alt="Insight Into Action Therapy" class="contact-logo-therapy" src="images/IIAT-logo.png"/>
+<div class="contact-brand-text"><div class="contact-brand-name-text">Insight Into Action Therapy</div><div class="contact-brand-url">insightactiontherapy.com</div></div>
+<svg class="contact-brand-arrow" viewbox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+</a>
+<a class="contact-brand-item" href="https://www.insightrecoverycenters.com/" rel="noopener noreferrer" target="_blank">
+<img alt="Insight Recovery Centers" class="contact-logo-recovery" src="images/IRC-logo.png"/>
+<div class="contact-brand-text"><div class="contact-brand-name-text">Insight Recovery Centers</div><div class="contact-brand-url">insightrecoverycenters.com</div></div>
+<svg class="contact-brand-arrow" viewbox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+</a>
+</div>
+</div>
+<div class="reveal reveal-delay-2">
+<div class="contact-form-wrap">
+<h3 class="form-title">Send Us a Message</h3>
+<p class="form-subtitle">We typically respond within one business day. All inquiries are confidential.</p>
+<div id="contactForm">
+<div class="form-row">
+<div class="form-group"><label>First Name</label><input autocomplete="given-name" id="fname" name="first_name" type="text"/></div>
+<div class="form-group"><label>Last Name</label><input autocomplete="family-name" id="lname" name="last_name" type="text"/></div>
+</div>
+<div class="form-group"><label>Email Address</label><input autocomplete="email" id="email" name="email" type="email"/></div>
+<div class="form-group"><label>Phone Number <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:.75rem">(optional)</span></label><input autocomplete="tel" id="phone" name="phone" type="tel"/></div>
+<div class="form-group"><label>How can we help? <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:.75rem">(optional)</span></label><textarea id="message" name="message"></textarea></div>
+<button class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">Send Message</button>
+<p class="form-error-msg" id="formError"></p>
+</div>
+<div class="form-success" id="formSuccess">
+<div class="success-icon"><svg viewbox="0 0 24 24"><polyline points="4,12 9,17 20,6"></polyline></svg></div>
+<h3 style="font-family:'Raleway',sans-serif;font-size:1.5rem;font-weight:600;color:var(--navy);margin-bottom:10px">Message Sent!</h3>
+<p style="color:var(--text-mid);font-size:.9rem;line-height:1.6">Thank you for reaching out. A member of our team will be in touch with you shortly.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TEAM -->
+<section class="team-section" id="team">
+<div class="team-inner">
+<div class="team-header reveal">
+<p class="section-eyebrow">Our Leadership</p>
+<h2 class="section-title">Meet the Executive Team</h2>
+<p style="margin-top:14px;color:var(--text-mid);font-size:.96rem;line-height:1.72;max-width:480px;margin-left:auto;margin-right:auto">Clinician-founded and led.<br/><strong>Tap any photo to connect directly.</strong></p>
+</div>
+<div class="team-grid">
+<div aria-label="Toggle contact card for Craig James" class="team-card reveal reveal-delay-1" role="button" tabindex="0"><div class="team-card-inner"><div class="team-card-front"><div class="team-card-photo" style="background-image:url('images/craig-james-headshot.jpg')"></div><div class="team-card-footer"><p class="team-contact-label">Contact</p><p class="team-name">Craig James</p><p class="team-role">LCSW, LSATP, MAC  ·  Co-Founder</p></div></div><div class="team-card-back">
+<p class="overlay-name">Craig James</p><p class="overlay-creds">LCSW, LSATP, MAC</p><p class="overlay-role">Co-Founder</p><div class="overlay-divider"></div>
+<a class="overlay-contact-item" href="mailto:cjames@insightactiontherapy.com"><svg viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Email Craig</span></a>
+<a class="overlay-contact-item" href="tel:+17036467664,34"><svg viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path></svg><span>Call Craig</span></a>
+<p class="overlay-close-hint">Tap to close</p>
+</div></div></div>
+<div aria-label="Toggle contact card for Cyndi Turner" class="team-card reveal reveal-delay-2" role="button" tabindex="0"><div class="team-card-inner"><div class="team-card-front"><div class="team-card-photo" style="background-image:url('images/cyndi-turner-headshot.jpg')"></div><div class="team-card-footer"><p class="team-contact-label">Contact</p><p class="team-name">Cyndi Turner</p><p class="team-role">LCSW, LSATP, MAC  ·  Co-Founder</p></div></div><div class="team-card-back">
+<p class="overlay-name">Cyndi Turner</p><p class="overlay-creds">LCSW, LSATP, MAC</p><p class="overlay-role">Co-Founder</p><div class="overlay-divider"></div>
+<a class="overlay-contact-item" href="mailto:cturner@insightactiontherapy.com"><svg viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Email Cyndi</span></a>
+<a class="overlay-contact-item" href="tel:+17036467664,28"><svg viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path></svg><span>Call Cyndi</span></a>
+<p class="overlay-close-hint">Tap to close</p>
+</div></div></div>
+<div aria-label="Toggle contact card for Matt Christian" class="team-card reveal reveal-delay-3" role="button" tabindex="0"><div class="team-card-inner"><div class="team-card-front"><div class="team-card-photo" style="background-image:url('images/matt-christian-headshot.jpg')"></div><div class="team-card-footer"><p class="team-contact-label">Contact</p><p class="team-name">Matt Christian</p><p class="team-role">LCSW, LSATP  ·  Executive Director, IIAT</p></div></div><div class="team-card-back">
+<p class="overlay-name">Matt Christian</p><p class="overlay-creds">LCSW, LSATP</p><p class="overlay-role">Executive Director, Insight Into Action Therapy</p><div class="overlay-divider"></div>
+<a class="overlay-contact-item" href="mailto:mchristian@insightactiontherapy.com"><svg viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Email Matt</span></a>
+<a class="overlay-contact-item" href="tel:+17036467664,14"><svg viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path></svg><span>Call Matt</span></a>
+<p class="overlay-close-hint">Tap to close</p>
+</div></div></div>
+<div aria-label="Toggle contact card for Chrissy Chow" class="team-card reveal reveal-delay-4" role="button" tabindex="0"><div class="team-card-inner"><div class="team-card-front"><div class="team-card-photo" style="background-image:url('images/chrissy-chow-headshot.jpg')"></div><div class="team-card-footer"><p class="team-contact-label">Contact</p><p class="team-name">Chrissy Chow</p><p class="team-role">BSW, CSAC-S  ·  Executive Director, IRC</p></div></div><div class="team-card-back">
+<p class="overlay-name">Chrissy Chow</p><p class="overlay-creds">BSW, CSAC-S</p><p class="overlay-role">Executive Director, Insight Recovery Centers</p><div class="overlay-divider"></div>
+<a class="overlay-contact-item" href="mailto:cchow@insightrecoverycenters.com"><svg viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Email Chrissy</span></a>
+<a class="overlay-contact-item" href="tel:+17032149499,23"><svg viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path></svg><span>Call Chrissy</span></a>
+<p class="overlay-close-hint">Tap to close</p>
+</div></div></div>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-inner">
+<div class="footer-top">
+<div class="footer-logo-block">
+<img alt="Insight Behavioral Centers" src="images/insight-only-logo.png"/>
+<p class="footer-tagline">Bringing together expert mental health and substance use care under one trusted brand.</p>
+</div>
+<div class="footer-links">
+<div class="footer-col">
+<p class="footer-col-title">Connect With Us</p>
+<a href="https://www.linkedin.com/company/insight-centers" rel="noopener noreferrer" target="_blank"><span class="footer-social-icon"><svg viewbox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></span>LinkedIn</a>
+<a href="https://www.instagram.com/insightbehavioralcenters" rel="noopener noreferrer" target="_blank"><span class="footer-social-icon"><svg viewbox="0 0 24 24"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></span>Instagram</a>
+<a href="https://www.facebook.com/InsightBehavioralCenters" rel="noopener noreferrer" target="_blank"><span class="footer-social-icon"><svg viewbox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></span>Facebook</a>
+<a href="https://www.youtube.com/@Insightbehavioral" rel="noopener noreferrer" target="_blank"><span class="footer-social-icon"><svg viewbox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"></path><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02"></polygon></svg></span>YouTube</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">© 2025 Insight Behavioral Centers. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+(function(){
+  function toggleCard(card){
+    const isActive = card.classList.contains('active');
+    document.querySelectorAll('.team-card.active').forEach(c => c.classList.remove('active'));
+    if(!isActive) card.classList.add('active');
+  }
+
+  document.querySelectorAll('.team-card').forEach(card => {
+    let touchMoved = false;
+    card.addEventListener('touchstart', () => { touchMoved = false; }, {passive:true});
+    card.addEventListener('touchmove', () => { touchMoved = true; }, {passive:true});
+    card.addEventListener('touchend', (e) => {
+      if (touchMoved) return;
+      if (e.target.closest('a')) return;
+      e.preventDefault();
+      toggleCard(card);
+    });
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      toggleCard(card);
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        if (e.target.closest('a')) return;
+        e.preventDefault();
+        toggleCard(card);
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.team-card')) {
+      document.querySelectorAll('.team-card.active').forEach(c => c.classList.remove('active'));
+    }
+  });
+})();
+</script>
+</body></html>
